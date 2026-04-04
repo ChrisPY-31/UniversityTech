@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { courses } from "../../datos";
 
-const Especializaciones = () => {
+const Specializations = () => {
   const [hovered, setHovered] = useState(null);
   return (
     <div>
@@ -14,14 +14,14 @@ const Especializaciones = () => {
         </p>
       </div>
 
-      <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {courses.map((course) => (
           <div
             key={course.id}
             onMouseEnter={() => setHovered(course.id)}
             onMouseLeave={() => setHovered(null)}
             className={`relative rounded-2xl bg-gray-900 border border-gray-800 overflow-hidden cursor-pointer
-              transition-all duration-300 ease-out
+              transition-all duration-300 ease-out card
               ${hovered === course.id ? "scale-[1.03] shadow-2xl border-gray-600" : "scale-100 shadow-md"}
             `}
           >
@@ -71,4 +71,4 @@ const Especializaciones = () => {
   );
 };
 
-export default Especializaciones;
+export default Specializations;
