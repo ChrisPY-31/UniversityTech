@@ -1,6 +1,6 @@
 import React from "react";
 
-export const BannerPrincipal = () => {
+export const BannerMain = () => {
   return (
     <div className="h-[500px] mx-auto flex items-center ">
       <div className="w-1/2">

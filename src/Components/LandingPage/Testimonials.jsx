@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {testimonials} from "../../datos";
 
-const CasosExito = () => {
+const Testimonials = () => {
   const [active, setActive] = useState(null);
 
   return (
@@ -18,14 +18,14 @@ const CasosExito = () => {
       </div>
 
       {/* Grid */}
-      <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
         {testimonials.map((t) => (
           <div
             key={t.id}
             onMouseEnter={() => setActive(t.id)}
             onMouseLeave={() => setActive(null)}
             className={`relative cursor-pointer rounded-2xl bg-gray-900 border overflow-hidden
-              transition-all duration-300 ease-out
+              transition-all duration-300 ease-out card
               ${
                 active === t.id
                   ? "border-gray-600 scale-[1.03] shadow-2xl shadow-black/50"
@@ -74,4 +74,4 @@ const CasosExito = () => {
   );
 };
 
-export default CasosExito;
+export default Testimonials;
