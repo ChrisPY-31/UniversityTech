@@ -1,4 +1,5 @@
 import React from "react";
+
 import logoNexus from "../assets/LogoNexus.png";
 
 export const Navigate = () => {
