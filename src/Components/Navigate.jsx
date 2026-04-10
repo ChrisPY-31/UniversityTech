@@ -1,5 +1,5 @@
 import React from "react";
-import logoNexus from "../assets/LogoNexusTech.jpeg";
+import logoNexus from "../assets/LogoNexusTech1.png";
 
 export const Navigate = () => {
   return (
