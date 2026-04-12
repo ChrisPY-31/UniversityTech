@@ -1,10 +1,10 @@
 import React from 'react'
+import ManagerDashboard from '../Manager/ManagerDashboard'
 
 export const Home = () => {
   return (
-    <div>
-       <h2 className="text-2xl font-bold mb-6 text-cyan-400">Nexus Tech</h2>
-      <p>Aqui van las vistas de como se verian los cursos</p>
-    </div>
+      <div>
+        <h1 className='text-3xl font-bold mb-4'>Bienvenido a EduApp</h1>
+      </div>
   )
 }

@@ -13,12 +13,12 @@ function App() {
     <>
       
       {location.pathname !== '/administradorDashboard' && <Navigate />}
+
       <Routes>
       {/* <Navigate> */}
         <Route path="/" element={<LandingPage/>} />
         <Route path="/home" element={<Home/>} />
         <Route path="/sing-in" element={<Login/>} />
-        <Route path="/administrador" element={<ManagerDashboard/>} />
         <Route path="/video-lecciones" element={<h1>Video Lecciones</h1>} />
       </Routes>
     </>

@@ -21,8 +21,6 @@ const ManagerDashboard = () => {
         {menu === 2 && (
           <>
             <Statistics />
-            <Users />
-            <Courses/>
           </>
         )}
 
