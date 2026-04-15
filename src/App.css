@@ -1,6 +1,7 @@
 body {
   background: linear-gradient(135deg, #0B0F19, #121826);
   color: #E6EDF3;
+  height: 100dvh;
 }
 
 :root {

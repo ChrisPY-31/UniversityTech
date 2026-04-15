@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useState } from "react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarHeader,
+  SidebarMenu,
+} from "../../components/ui/sidebar";
+import { Link } from "react-router-dom";
+import MenuRoles from "../../components/MenuRoles";
 
 export const Home = () => {
+  const [menu, setMenu] = useState(3);
+  const rol = "admin"; // "admin", student", "instructor"
+
   return (
-    <div>
-       <h2 className="text-2xl font-bold mb-6 text-cyan-400">Nexus Tech</h2>
-      <p>Aqui van las vistas de como se verian los cursos</p>
-    </div>
-  )
-}
+    <>
+      <Sidebar>
+        <SidebarContent className="bg-green-400">
+          <SidebarHeader>
+            <h2>Nexus Tech University</h2>
+          </SidebarHeader>
+          <SidebarGroup>
+            <SidebarMenu>
+                <MenuRoles rol={rol} activeMenu={menu}/>
+            </SidebarMenu>
+          </SidebarGroup>
+        </SidebarContent>
+      </Sidebar>
+    </>
+  );
+};

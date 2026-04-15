@@ -1,23 +1,32 @@
-import React from "react";
-
+import { useState } from "react";
 import logoNexus from "../assets/LogoNexus.png";
+import { Link } from "react-router-dom";
+import { SidebarTrigger } from "./ui/sidebar";
 
-export const Navigate = () => {
+export const Navigate = ({ isAuth }) => {
+
   return (
-    <header className="navbar  border sticky top-0 ">
-      <nav className="w-[80%] mx-auto flex justify-between items-center alig py-3 border">
-        <div> 
-          <img src={logoNexus} alt="Logo Nexus" className="w-25 border" />
+    <header >
+      <nav>
+       <div className="w-[90%] mx-auto flex justify-between items-center ">
+          <img src={logoNexus} alt="Logo Nexus" className="w-20 py-2 " />
+          <ul>
+            {isAuth ? (
+              <li>
+                <button className="btn-primary">
+                  <Link to={"profile"}>Perfil</Link>
+                </button>
+              </li>
+            ) : (
+              <li>
+                <button className="btn-primary">
+                  <Link to={"sign-in"}>Inicio de Sesion</Link>
+                </button>
+              </li>
+            )}
+          </ul>
         </div>
-        <ul>
-          <li>
-            <button className="btn-primary">
-              Inicio de Sesion 
-            </button> 
-          </li>
-        </ul>
       </nav>
     </header>
-  ); 
+  );
 };
-
