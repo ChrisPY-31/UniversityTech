@@ -16,7 +16,7 @@ export const Home = () => {
   return (
     <>
       <Sidebar>
-        <SidebarContent className="bg-green-400">
+        <SidebarContent className="bg-white-400">
           <SidebarHeader>
             <h2>Nexus Tech University</h2>
           </SidebarHeader>

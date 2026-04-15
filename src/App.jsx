@@ -6,6 +6,7 @@ import LandingPage from './Pages/LandingPage/LandingPage'
 import PrivateLayout from './Pages/PrivateLayout/PrivateLayout'
 import { useState } from 'react'
 import Courses from './components/Manager/Courses'
+import InstructorDashboard from './Pages/Instructor/InstructorDashboard'
 
 function App() {
   const location = useLocation();  
@@ -25,7 +26,8 @@ function App() {
         {/*Rutas privadas*/}
         <Route element={<PrivateLayout isAuth={isAuthenticated} />}>
           <Route path="/home" element={<Courses/>} />
-          <Route path="/video-lecciones" element={<h1>Video Lecciones</h1>} />
+          <Route path="/video-lecciones" element={<h1>Video Lecciones</h1>} />   
+          <Route path="/instructor" element={<InstructorDashboard/>} />
         </Route>
         
       </Routes>
