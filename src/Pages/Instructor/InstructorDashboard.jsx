@@ -8,8 +8,7 @@ import InstructorFooter from '../../Components/Instructor/InstructorFooter'
 const InstructorDashboard = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <InstructorHeader />
-      <div className="flex-1 px-8 py-6 space-y-8">
+      <div className="flex-1 px-6 py-6 space-y-8">
         <WelcomeSection />
         <StatsCards />
         <CourseList />
