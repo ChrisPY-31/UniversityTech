@@ -4,42 +4,39 @@ import {
   FaBook, FaCertificate, FaBell, FaChalkboardTeacher,
   FaSignOutAlt, FaGraduationCap
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const MENU_CONFIG = {
   admin: [
-    { id: 1, label: "Inicio",      Icon: FaHome },
-    { id: 2, label: "Dashboard",   Icon: FaChartLine },
-    { id: 3, label: "Usuarios",    Icon: FaUsers },
-    { id: 4, label: "Categorías",  Icon: FaFolder },
-    { id: 5, label: "Reportes",    Icon: FaChartBar },
+    { id: 1, label: "Inicio",      Icon: FaHome , to: "/home"},
+    { id: 2, label: "Dashboard",   Icon: FaChartLine , to: "/dashboard"},
+    { id: 3, label: "Usuarios",    Icon: FaUsers , to: "/users"},
+    { id: 4, label: "Categorías",  Icon: FaFolder , to: "/categories"}, //Esta ruta es una actualizacion futura
+    { id: 5, label: "Reportes",    Icon: FaChartBar , to: "/reports"}, // Esta ruta es una actualizacion futura
   ],
   student: [
-    { id: 1, label: "Inicio",           Icon: FaHome },
-    { id: 2, label: "Mis cursos",       Icon: FaBook },
-    { id: 3, label: "Certificados",     Icon: FaCertificate },
-    { id: 4, label: "Notificaciones",   Icon: FaBell },
+    { id: 1, label: "Inicio",           Icon: FaHome , to: "/home"},
+    { id: 2, label: "Mis rutas",       Icon: FaBook , to: "/cursos"},
+    { id: 3, label: "Certificados",     Icon: FaCertificate , to: "/certificaciones"}, // Esta ruta es una actualizacion futura
+    { id: 4, label: "Notificaciones",   Icon: FaBell , to: "/notificaciones"},
   ],
   instructor: [
-    { id: 1, label: "Inicio",           Icon: FaHome },
-    { id: 2, label: "Mis cursos",       Icon: FaChalkboardTeacher },
-    { id: 4, label: "Notificaciones",   Icon: FaBell },
-    { id: 5, label: "Estadísticas",     Icon: FaChartBar },
+    { id: 1, label: "Inicio",           Icon: FaHome , to: "/home"},
+    { id: 2, label: "Mis cursos",       Icon: FaChalkboardTeacher , to: "/instructor"},
+    { id: 4, label: "Notificaciones",   Icon: FaBell , to: "/notificaciones"},
+    { id: 5, label: "Estadísticas",     Icon: FaChartBar , to: "/estadisticas"}, // Esta ruta es una actualizacion futura
   ],
 };
 
-const ROLE_LABELS = {
-  admin: "Administrador",
-  student: "Estudiante",
-  instructor: "Instructor",
-};
 
 const MenuRoles = ({ rol, activeMenu}) => {
   const items = MENU_CONFIG[rol] ?? [];
 
   return (
       <nav className="flex flex-col gap-0.5 flex-1">
-        {items.map(({ id, label, Icon }) => (
-          <button
+        {items.map(({ id, label, Icon ,to}) => (
+          <Link
+            to={to}
             key={id}
             className={`
               flex items-center gap-2.5 px-2 py-2 rounded-lg text-sm w-full text-left
@@ -55,7 +52,7 @@ const MenuRoles = ({ rol, activeMenu}) => {
             )}
             <Icon className={activeMenu === id ? "text-[#00E5FF]" : "text-slate-500"} />
             {label}
-          </button>
+          </Link>
         ))}
       </nav>
 

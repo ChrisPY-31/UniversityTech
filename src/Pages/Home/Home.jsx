@@ -11,7 +11,7 @@ import MenuRoles from "../../components/MenuRoles";
 
 export const Home = () => {
   const [menu, setMenu] = useState(3);
-  const rol = "admin"; // "admin", student", "instructor"
+  const rol = "instructor"; // "admin", student", "instructor"
 
   return (
     <>

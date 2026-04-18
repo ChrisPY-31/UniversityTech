@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
+import { Link} from 'react-router-dom'
 
 const WelcomeSection = () => {
   return (
@@ -15,10 +16,10 @@ const WelcomeSection = () => {
           Este mes has recibido 50 nuevo enrolamientos de personas que desean aprender.
         </p>
       </div>
-      <button className="flex items-center gap-2 bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition-colors whitespace-nowrap">
+      <Link to="/cursos/nuevo-curso" className="flex items-center cursor-pointer gap-2 bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition-colors whitespace-nowrap">
         <FaPlus className="text-sm" />
         Subir un nuevo curso
-      </button>
+      </Link>
     </section>
   )
 }
