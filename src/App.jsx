@@ -11,6 +11,7 @@ import CoursesCard from "./components/Courses/CoursesCard";
 import Courses from "./components/Courses";
 import Users from "./components/Manager/Users";
 import NewCourse from "./Pages/NewCourse/NewCourse";
+import AboutCourse from "./Pages/AboutCourse/AboutCourse";
 function App() {
   const location = useLocation();
 
@@ -33,7 +34,7 @@ function App() {
           <Route path="/notificaciones" element={<Notification />} />
           <Route
             path="/course/descripcion"
-            element={<h1>Descripcion del curso</h1>}
+            element={<AboutCourse/>}
           />
 
           {/*Rutas privadas Administrador*/}
@@ -43,7 +44,7 @@ function App() {
           {/*Rutas privadas Instuctor*/}
           <Route path="/instructor" element={<InstructorDashboard />} />
           <Route path="/cursos/nuevo-curso" element={<NewCourse/>} />
-          
+|          
           {/*Rutas privadas Estudiante*/}
           
         </Route>
