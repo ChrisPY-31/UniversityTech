@@ -14,6 +14,7 @@ import AboutCourse from "./Pages/AboutCourse/AboutCourse";
 import ManagerDashboard from "./Pages/Manager/ManagerDashboard";
 import ManagerUsersPage from "./Pages/Manager/ManagerUsersPage";
 import CourseVideo from "./Pages/CourseVideo/CourseVideo";
+import CurriculumBuilder from "./Pages/CurriculumBuilder/CurriculumBuilder";
 
 function App() {
   const location = useLocation();

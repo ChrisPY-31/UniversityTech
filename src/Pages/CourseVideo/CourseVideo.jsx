@@ -6,7 +6,7 @@ import Playlist from '@/Components/CourseVideo/Playlist'
 
 const CourseVideo = () => {
   return (
-    <section className="w-[96%] max-w-[1600px] mx-auto py-8">
+    <section className="w-[96%] max-w-[1600px] mx-auto py-4">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         
         <div className="lg:col-span-2 flex flex-col">
