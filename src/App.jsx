@@ -12,6 +12,7 @@ import Courses from "./components/Courses";
 import Users from "./components/Manager/Users";
 import NewCourse from "./Pages/NewCourse/NewCourse";
 import AboutCourse from "./Pages/AboutCourse/AboutCourse";
+import CurriculumBuilder from "./Pages/CurriculumBuilder/CurriculumBuilder";
 function App() {
   const location = useLocation();
 
@@ -44,6 +45,7 @@ function App() {
           {/*Rutas privadas Instuctor*/}
           <Route path="/instructor" element={<InstructorDashboard />} />
           <Route path="/cursos/nuevo-curso" element={<NewCourse/>} />
+          <Route path="/cursos/curriculum" element={<CurriculumBuilder/>} />
           {/*Rutas privadas Estudiante*/}
           
         </Route>
