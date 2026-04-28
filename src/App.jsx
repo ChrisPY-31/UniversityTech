@@ -13,6 +13,7 @@ import NewCourse from "./Pages/NewCourse/NewCourse";
 import AboutCourse from "./Pages/AboutCourse/AboutCourse";
 import ManagerDashboard from "./Pages/Manager/ManagerDashboard";
 import ManagerUsersPage from "./Pages/Manager/ManagerUsersPage";
+import CourseVideo from "./Pages/CourseVideo/CourseVideo";
 
 function App() {
   const location = useLocation();
@@ -32,7 +33,7 @@ function App() {
         <Route element={<PrivateLayout isAuth={isAuthenticated} />}>
           {/*Rutas privadas publicas*/}
           <Route path="/home" element={<Courses />} />
-          <Route path="/video-lecciones" element={<h1>Video Lecciones</h1>} />
+          <Route path="/video-lecciones" element={<CourseVideo />} /> 
           <Route path="/notificaciones" element={<Notification />} />
           <Route
             path="/course/descripcion"
