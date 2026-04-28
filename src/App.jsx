@@ -9,10 +9,12 @@ import InstructorDashboard from "./Pages/Instructor/InstructorDashboard";
 import Notification from "./Pages/Notification/Notification";
 import CoursesCard from "./components/Courses/CoursesCard";
 import Courses from "./components/Courses";
-import Users from "./components/Manager/Users";
 import NewCourse from "./Pages/NewCourse/NewCourse";
 import AboutCourse from "./Pages/AboutCourse/AboutCourse";
-import CurriculumBuilder from "./Pages/CurriculumBuilder/CurriculumBuilder";
+import ManagerDashboard from "./Pages/Manager/ManagerDashboard";
+import ManagerUsersPage from "./Pages/Manager/ManagerUsersPage";
+import CourseVideo from "./Pages/CourseVideo/CourseVideo";
+
 function App() {
   const location = useLocation();
 
@@ -31,7 +33,7 @@ function App() {
         <Route element={<PrivateLayout isAuth={isAuthenticated} />}>
           {/*Rutas privadas publicas*/}
           <Route path="/home" element={<Courses />} />
-          <Route path="/video-lecciones" element={<h1>Video Lecciones</h1>} />
+          <Route path="/video-lecciones" element={<CourseVideo />} /> 
           <Route path="/notificaciones" element={<Notification />} />
           <Route
             path="/course/descripcion"
@@ -39,8 +41,8 @@ function App() {
           />
 
           {/*Rutas privadas Administrador*/}
-          <Route path="/dashboard" element={<h1>Dashboard</h1>} />
-          <Route path="/users" element={<Users />} />
+          <Route path="/dashboard" element={<ManagerDashboard />} />
+          <Route path="/users" element={<ManagerUsersPage />} />
 
           {/*Rutas privadas Instuctor*/}
           <Route path="/instructor" element={<InstructorDashboard />} />
