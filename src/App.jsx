@@ -47,6 +47,7 @@ function App() {
           {/*Rutas privadas Instuctor*/}
           <Route path="/instructor" element={<InstructorDashboard />} />
           <Route path="/cursos/nuevo-curso" element={<NewCourse/>} />
+          <Route path="/cursos/curriculum" element={<CurriculumBuilder/>} />
           {/*Rutas privadas Estudiante*/}
           
         </Route>
