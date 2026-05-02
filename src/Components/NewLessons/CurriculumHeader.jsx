@@ -13,7 +13,7 @@ const CurriculumHeader = ({ onAddSection }) => {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-4xl font-bold text-gray-900">
-            Plan de Estudios <span className="text-blue-600 italic">Builder</span>
+            Plan de Estudios <span className="text-blue-600 italic"></span>
           </h1>
           <p className="text-gray-500 mt-2 max-w-lg">
             Diseña y estructura tu itinerario formativo. Gestiona módulos, lecciones y recursos multimedia en un entorno de alto rendimiento.

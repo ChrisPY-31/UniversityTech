@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
-import ActionButtons from '../../Pages/NewCourse/ActionButtons'
-import CategorySelector from '../../Pages/NewCourse/CategorySelector'
-import CoursePreviewCard from '../../Pages/NewCourse/CoursePreviewCard'
-import DifficultyLevel from '../../Pages/NewCourse/DifficultyLevel'
-import GeneralInfo from '../../Pages/NewCourse/GeneralInfo'
-import StepIndicator from '../../Pages/NewCourse/StepIndicator'
-import ThumbnailUpload from '../../Pages/NewCourse/ThumbnailUpload'
-import VisibilityStatus from '../../Pages/NewCourse/VisibilityStatus'
+import ActionButtons from '../../components/NewCourse/ActionButtons'
+import CategorySelector from '../../components/NewCourse/CategorySelector'
+import CoursePreviewCard from '../../components/NewCourse/CoursePreviewCard'
+import DifficultyLevel from '../../components/NewCourse/DifficultyLevel'
+import GeneralInfo from '../../components/NewCourse/GeneralInfo'
+import ThumbnailUpload from '../../components/NewCourse/ThumbnailUpload'
+import VisibilityStatus from '../../components/NewCourse/VisibilityStatus'
 
 const NewCourse = () => {
   const [title, setTitle] = useState('')
@@ -18,7 +17,6 @@ const NewCourse = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <StepIndicator currentStep={1} />
       <div className="px-8 py-6">
         <div className="grid grid-cols-3 gap-8">
 

@@ -58,3 +58,43 @@ export const testimonials= [
   },
   
 ];
+
+export const INITIAL_MODULES = [
+  {
+    id: 1,
+    number: 1,
+    title: 'Fundamentos de la Arquitectura Moderna',
+    description: 'Introducción al enfoque nativo de la nube y a los patrones de escalabilidad.',
+    lessons: [
+      {
+        id: 1,
+        title: 'Introducción a los Sistemas Distribuidos',
+        status: 'uploaded',
+        duration: '08:24',
+        modified: 'Modificado hace 2 horas',
+      },
+      {
+        id: 2,
+        title: 'Paradigmas de Latencia Frente a Rendimiento',
+        status: 'uploading',
+        progress: '65%',
+        estimated: 'Se estima que queda 1 minuto',
+      },
+    ],
+  },
+  {
+    id: 2,
+    number: 2,
+    title: 'Análisis en profundidad de los microservicios',
+    description: 'Docker, Kubernetes y estrategias de orquestación.',
+    lessons: [
+      {
+        id: 3,
+        title: 'Containerización con Docker',
+        status: 'uploaded',
+        duration: '15:48',
+        modified: 'Modificado ayer',
+      },
+    ],
+  },
+]

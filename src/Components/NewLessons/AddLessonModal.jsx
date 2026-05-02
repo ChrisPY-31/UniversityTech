@@ -22,7 +22,6 @@ const AddLessonModal = ({ isOpen, onClose, onSave }) => {
       setTitle('')
       setVideo(null)
       setDuration('')
-      setDescription('')
       onClose()
     }
   }
@@ -112,18 +111,6 @@ const AddLessonModal = ({ isOpen, onClose, onSave }) => {
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-bold text-blue-900 mb-2">
-              Descripción breve
-            </label>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Describe los objetivos clave de aprendizaje para esta lección..."
-              rows={3}
-              className="w-full px-4 py-3 bg-gray-100 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
-            />
-          </div>
         </div>
 
         <div className="px-8 py-5 flex items-center justify-center gap-4 border-t border-gray-100">
