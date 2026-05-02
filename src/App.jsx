@@ -1,20 +1,18 @@
 import "./App.css";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Home } from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import PrivateLayout from "./Pages/PrivateLayout/PrivateLayout";
 import { useState } from "react";
 import InstructorDashboard from "./Pages/Instructor/InstructorDashboard";
 import Notification from "./Pages/Notification/Notification";
-import CoursesCard from "./components/Courses/CoursesCard";
 import Courses from "./components/Courses";
 import NewCourse from "./Pages/NewCourse/NewCourse";
 import AboutCourse from "./Pages/AboutCourse/AboutCourse";
 import ManagerDashboard from "./Pages/Manager/ManagerDashboard";
 import ManagerUsersPage from "./Pages/Manager/ManagerUsersPage";
 import CourseVideo from "./Pages/CourseVideo/CourseVideo";
-import CurriculumBuilder from "./Pages/CurriculumBuilder/CurriculumBuilder";
+import CurriculumBuilder from "./Pages/NewLessons/NewLessons";
 
 function App() {
   const location = useLocation();
@@ -42,6 +40,7 @@ function App() {
           />
 
           {/*Rutas privadas Administrador*/}
+          <Route path="/newAccounts" element={<h1>Crear Cuentas</h1>} />
           <Route path="/dashboard" element={<ManagerDashboard />} />
           <Route path="/users" element={<ManagerUsersPage />} />
 
