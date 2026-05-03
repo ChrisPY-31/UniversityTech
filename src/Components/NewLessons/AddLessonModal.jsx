@@ -21,6 +21,7 @@ const AddLessonModal = ({ isOpen, onClose, onSave }) => {
       onSave({ title, video, duration, description })
       setTitle('')
       setVideo(null)
+      setDescription('')
       setDuration('')
       onClose()
     }
@@ -35,7 +36,7 @@ const AddLessonModal = ({ isOpen, onClose, onSave }) => {
           <span className="text-xs font-bold text-teal-600 bg-teal-100 px-3 py-1 rounded-full uppercase tracking-wider">
             Nueva Lección
           </span>
-          <h2 className="text-2xl font-bold text-gray-900 mt-3">Añadir Nueva Lección</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mt-3">Añadir Nuevo Video</h2>
           <p className="text-sm text-gray-500 mt-1">
             Configura los detalles de tu contenido educativo de alto nivel.
           </p>
@@ -58,6 +59,18 @@ const AddLessonModal = ({ isOpen, onClose, onSave }) => {
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Ej. Optimización de Microservicios con Stratum"
               className="w-full px-4 py-3 bg-gray-100 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-blue-900 mb-2">
+              Descripción de la lección
+            </label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Proporciona una descripción detallada de lo que los estudiantes aprenderán en esta lección."
+              className="w-full px-4 py-3 bg-gray-100 rounded-lg text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none h-24"
             />
           </div>
 

@@ -74,7 +74,7 @@ const NewLessons = () => {
                 className="w-full p-4 border-t border-dashed border-gray-200 text-sm font-medium text-gray-500 hover:text-blue-600 hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 rounded-b-xl"
               >
                 <FaPlus className="text-xs" />
-                Añadir Nueva Lección
+                Añadir Nueva Sección
               </button>
             }
           >

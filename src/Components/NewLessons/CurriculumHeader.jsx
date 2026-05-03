@@ -46,7 +46,7 @@ const CurriculumHeader = ({ onAddSection }) => {
           className="flex items-center gap-2 text-sm font-bold text-blue-900 hover:text-blue-700 transition-colors"
         >
           <FaPlus />
-          Añadir Nueva Sección
+          Añadir Nueva Lección
         </button>
       </div>
     </div>
