@@ -13,6 +13,7 @@ import ManagerDashboard from "./Pages/Manager/ManagerDashboard";
 import ManagerUsersPage from "./Pages/Manager/ManagerUsersPage";
 import CourseVideo from "./Pages/CourseVideo/CourseVideo";
 import NewLessons from "./Pages/NewLessons/NewLessons";
+import ManagerNewAccount from "./Pages/Manager/ManagerNewAccount";
 
 function App() {
   const location = useLocation();
@@ -40,7 +41,7 @@ function App() {
           />
 
           {/*Rutas privadas Administrador*/}
-          <Route path="/newAccounts" element={<h1>Crear Cuentas</h1>} />
+          <Route path="/newAccounts" element={<ManagerNewAccount/>} />
           <Route path="/dashboard" element={<ManagerDashboard />} />
           <Route path="/users" element={<ManagerUsersPage />} />
 
