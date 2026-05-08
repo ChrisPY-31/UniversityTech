@@ -2,7 +2,9 @@ import React from 'react'
 import courses from './Courses/Courses.js'
 import CoursesCard from './Courses/CoursesCard'
 
-const Courses = () => {
+const Courses = () => { 
+  
+
   
   return (
     <div className='flex flex-wrap justify-around mt-5'>
