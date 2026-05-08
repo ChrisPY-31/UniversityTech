@@ -5,6 +5,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Navigate } from "@/components/Navigate";
 import InstructorFooter from "@/components/Instructor/InstructorFooter";
 const PrivateLayout = ({ isAuth }) => {
+  
   if (!isAuth) return <Navigate to="/sign-in" />;
 
   return (
