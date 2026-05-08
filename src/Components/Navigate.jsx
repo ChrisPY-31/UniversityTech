@@ -1,10 +1,12 @@
 import { useState } from "react";
 import logoNexus from "../assets/LogoNexus.png";
 import { Link } from "react-router-dom";
-import { SidebarTrigger } from "./ui/sidebar";
 import { FaSearch } from "react-icons/fa";
 
 export const Navigate = ({ isAuth }) => {
+
+  const [isMenuOpen , setIsOpenMenu] = useState(false);
+
   return (
     <header>
       <nav>
@@ -23,11 +25,22 @@ export const Navigate = ({ isAuth }) => {
                 </div>
                 <div className="w-9 h-9 rounded-full bg-blue-900 border-2 border-blue-300 overflow-hidden">
                   <img
+                    onClick={()=> setIsOpenMenu(!isMenuOpen)}
                     src="https://ui-avatars.com/api/?name=Dr+Aris&background=1e3a5f&color=fff&size=36"
                     alt="Profile"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover cursor-pointer"
                   />
                 </div>
+                {isMenuOpen && (
+                  <div className="absolute right-4 top-18 w-48 bg-white rounded-md shadow-lg py-2 z-10">
+                    <h3 className="block px-4 py-2 text-gray-700 ">Hola Usuario</h3>
+                    <hr />
+                    <Link to={"profile"} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Perfil</Link>
+                    <Link to={"settings"} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Configuración</Link>
+                    <Link to={"/"} className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Cerrar Sesión</Link>
+                  </div>
+                )}
+                
               </div>
             ) : (
               <div>
