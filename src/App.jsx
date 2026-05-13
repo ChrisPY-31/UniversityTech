@@ -1,9 +1,8 @@
 import "./App.css";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import LandingPage from "./Pages/LandingPage/LandingPage";
 import PrivateLayout from "./Pages/PrivateLayout/PrivateLayout";
-import { useState } from "react";
 import InstructorDashboard from "./Pages/Instructor/InstructorDashboard";
 import Notification from "./Pages/Notification/Notification";
 import Courses from "./components/Courses";
@@ -14,11 +13,12 @@ import ManagerUsersPage from "./Pages/Manager/ManagerUsersPage";
 import CourseVideo from "./Pages/CourseVideo/CourseVideo";
 import NewLessons from "./Pages/NewLessons/NewLessons";
 import ManagerNewAccount from "./Pages/Manager/ManagerNewAccount";
+import { useUser } from "./hooks/useUser";
 
 function App() {
   const location = useLocation();
-
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  
+  const {isLoggedIn } = useUser();
 
   return (
     <>
@@ -26,29 +26,29 @@ function App() {
         {/* <Navigate> */}
 
         {/*Rutas publicas*/}
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage   />  } />
         <Route path="/sign-in" element={<Login />} />
 
         {/*Rutas privadas*/}
-        <Route element={<PrivateLayout isAuth={isAuthenticated} />}>
+        <Route element={<PrivateLayout />}>
           {/*Rutas privadas publicas*/}
-          <Route path="/home" element={<Courses />} />
-          <Route path="/video-lecciones" element={<CourseVideo />} /> 
-          <Route path="/notificaciones" element={<Notification />} />
+          <Route path="/home" element={ isLoggedIn ? <Courses /> : <Navigate to="/sign-in" /> } />
+          <Route path="/video-lecciones" element={ isLoggedIn ? <CourseVideo /> : <Navigate to="/sign-in" /> } />
+          <Route path="/notificaciones" element={ isLoggedIn ? <Notification /> : <Navigate to="/sign-in" /> } />
           <Route
             path="/course/descripcion"
-            element={<AboutCourse/>}
+            element={ isLoggedIn ? <AboutCourse/> : <Navigate to="/sign-in" /> }
           />
 
           {/*Rutas privadas Administrador*/}
-          <Route path="/newAccounts" element={<ManagerNewAccount/>} />
-          <Route path="/dashboard" element={<ManagerDashboard />} />
-          <Route path="/users" element={<ManagerUsersPage />} />
+          <Route path="/newAccounts" element={ isLoggedIn ? <ManagerNewAccount/> : <Navigate to="/sign-in" /> } />
+          <Route path="/dashboard" element={ isLoggedIn ? <ManagerDashboard /> : <Navigate to="/sign-in" /> } />
+          <Route path="/users" element={ isLoggedIn ? <ManagerUsersPage /> : <Navigate to="/sign-in" /> } />
 
           {/*Rutas privadas Instuctor*/}
-          <Route path="/instructor" element={<InstructorDashboard />} />
-          <Route path="/cursos/nuevo-curso" element={<NewCourse/>} />
-          <Route path="/cursos/curriculum" element={<NewLessons/>} />
+          <Route path="/instructor" element={ isLoggedIn ? <InstructorDashboard /> : <Navigate to="/sign-in" /> } />
+          <Route path="/cursos/nuevo-curso" element={ isLoggedIn ? <NewCourse/> : <Navigate to="/sign-in" /> } />
+          <Route path="/cursos/curriculum" element={ isLoggedIn ? <NewLessons/> : <Navigate to="/sign-in" /> } />
           {/*Rutas privadas Estudiante*/}
           
         </Route>

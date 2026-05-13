@@ -1,15 +1,27 @@
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import React, { useState } from "react";
 import logoNexusTechP from "../../assets/LogoNexusTechP.png";
+import { useForm } from "@/hooks/useForm";
 
 const Login = () => {
+  const [username , setUsername]= useState("")
+  const [password , setPassword] = useState("");
+  
+  const { fetchSignInUser } = useForm();
+
+  const handleSubmit = () => {
+    
+    const data ={
+      username,
+      password
+    }
+
+    fetchSignInUser(data);
+    
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <FieldGroup
@@ -28,14 +40,15 @@ const Login = () => {
         </div>
 
         <Field className="mb-4">
-          <FieldLabel htmlFor="email" className="text-[15px] text-gray-400">
-            Correo electronico:
+          <FieldLabel className="text-[15px] text-gray-400">
+            Usuario:
           </FieldLabel>
 
           <Input
-            id="email"
-            type="email"
-            placeholder="name@nexus-tech.edu"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="2710116"
             className="mt-1 w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white outline-none focus:border-cyan-400 transition"
           />
         </Field>
@@ -58,6 +71,8 @@ const Login = () => {
             id="password"
             type="password"
             placeholder="********"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="mt-1 w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white outline-none focus:border-cyan-400 transition"
           />
         </Field>
@@ -66,17 +81,11 @@ const Login = () => {
           <Button
             type="submit"
             className="w-full py-3 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-cyan-400 to-blue-500 hover:opacity-90 transition cursor-pointer"
+            onClick={handleSubmit}
           >
             Ingresar
           </Button>
         </Field>
-
-        <p className="text-center text-gray-500 text-sm mt-5">
-          No estas registrado?{" "}
-          <span className="text-cyan-400 underline cursor-pointer">
-            Crear cuenta
-          </span>
-        </p>
       </FieldGroup>
     </div>
   );

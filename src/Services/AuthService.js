@@ -4,7 +4,9 @@ const API_AUTH = "http://localhost:8080/auth";
 
 const signIn = async (user) => {
   try {
-    const response = await axios.post(`${API_AUTH}/login`, user);
+    const response = await axios.post(`${API_AUTH}/login`, user, {
+      withCredentials: true,
+    });
     return response.data;
   } catch (error) {
     throw error;
@@ -12,15 +14,12 @@ const signIn = async (user) => {
 };
 
 const register = async (user) => {
-  try {
-    const response = await axios.post(`${API_AUTH}/register`, user);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const response = await axios.post(`${API_AUTH}/register`, user);
+  return response.data;
+  
 };
 
-const logout = async () => {
+const signOut = async () => {
   try {
     const response = await axios.post(`${API_AUTH}/logout`, {
       withCredentials: true,
@@ -31,4 +30,4 @@ const logout = async () => {
   }
 };
 
-export { signIn, register, logout };
+export { signIn, register, signOut };

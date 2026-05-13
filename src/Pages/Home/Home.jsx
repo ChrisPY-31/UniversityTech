@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -6,11 +6,15 @@ import {
   SidebarHeader,
   SidebarMenu,
 } from "../../components/ui/sidebar";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import MenuRoles from "../../components/MenuRoles";
+import { useSelector } from "react-redux";
 
 export const Home = () => {
   const [menu, setMenu] = useState(3);
+
+  const { role } = useSelector((state) => state.auth);
+
   const rol = "admin"; // "admin", student", "instructor"
 
   return (
@@ -22,7 +26,7 @@ export const Home = () => {
           </SidebarHeader>
           <SidebarGroup>
             <SidebarMenu>
-                <MenuRoles rol={rol} activeMenu={menu}/>
+              <MenuRoles rol={role} activeMenu={menu} />
             </SidebarMenu>
           </SidebarGroup>
         </SidebarContent>

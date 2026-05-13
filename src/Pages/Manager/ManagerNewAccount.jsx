@@ -3,8 +3,11 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import imagenTec from "../../assets/imagenTec.jpg";
 import { IoRefreshOutline } from "react-icons/io5";
+import { useForm } from "@/hooks/useForm";
 
 const ManagerNewAccount = () => {
+      const {fetchSignUp} = useForm();
+
 
   //contraseñas
   const generatePassword = () => {
@@ -71,21 +74,29 @@ const generateUsername = (name, lastname) => {
     password: Yup.string().required("Genera una contraseña"),
   });
 
-  const onSubmitHandler = (values) => {
-    const userObject = {
-      user: {
+  const onSubmitHandler = (values ,{resetForm}) => {
+    const newUser  = {
         username: values.username,
         password: values.password,
         email: values.email,
         role: values.role,
-      },
-      person: {
         nombre: values.name,
-        apellido: values.lastname,
+        apellido: values.lastname
+      }
+     
+      fetchSignUp(newUser);
+      
+      resetForm({
+      values: {
+        username: "",
+        name: "",
+        lastname: "",
+        email: "",
+        password: generatePassword(),
+        role: "INSTRUCTOR",
       },
-    };
+    });
 
-    console.log("Datos", userObject);
   };
 
   return (
@@ -134,7 +145,7 @@ const generateUsername = (name, lastname) => {
                 <Form className="space-y-5">
 
                   <div className="flex bg-[#060B13] p-1 rounded-xl ">
-                    {["ESTUDIANTE", "INSTRUCTOR"].map((r) => (
+                    {["STUDENT", "INSTRUCTOR"].map((r) => (
                       <button
                         key={r}
                         type="button"
@@ -145,7 +156,7 @@ const generateUsername = (name, lastname) => {
                             : "text-gray-400 hover:text-white"
                         }`}
                       >
-                        {r === "INSTRUCTOR" ? "Instructor" : "Estudiante"}
+                        {r === "INSTRUCTOR" ? "Instructor" : "Student"}
                       </button>
                     ))}
                   </div>
