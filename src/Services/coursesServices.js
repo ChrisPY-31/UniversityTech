@@ -1,8 +1,8 @@
 //Aqui van a ir las peticiones a la API, es decir, las funciones que se encargan de hacer las
 // peticiones a la API y devolver los datos adaptados a nuestro formato interno.
 
-import axios from "axios";
 import { API_URL } from "@/api";
+import axios from "axios";
 const API_PRUEBA = "https://jsonplaceholder.typicode.com/posts"; //Api de prueba;
 
 const Videos = async () => {
@@ -17,11 +17,12 @@ const Videos = async () => {
 //Traer los cursos desde la API
 const getCourses = async () => {
   try {
-    const response = await axios.get(`${API_URL}/courses`,{
+    const {data} = await axios.get(`${API_URL}/courses`, {
       withCredentials: true,
     });
-    return response.data;
+    return data.content;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
@@ -65,7 +66,7 @@ const updateCourse = async (id, course) => {
 };
 
 //Eliminar un curso de la API por ID
-const deleteCourse = (async = async (id) => {
+const deleteCourse = async (id) => {
   try{
     const response = await axios.delete(`${API_URL}/courses/${id}`, {
       withCredentials:true
@@ -75,7 +76,7 @@ const deleteCourse = (async = async (id) => {
   }catch(error){
     throw error;
   }
-});
+};
 
 export {
   Videos,
