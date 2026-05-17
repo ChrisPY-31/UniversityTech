@@ -1,5 +1,6 @@
 import { register, signIn, signOut } from "@/Services/AuthService";
 import { loginUser, logoutUser } from "@/store/Reducer/AuthSlice";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +8,10 @@ import { useNavigate } from "react-router-dom";
 export const useForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoadding, setIsloadding] = useState(false);
 
   const fetchSignInUser = async (data) => {
+    setIsloadding(true);
     const response = await signIn(data);
     if (response.status) {
       dispatch(loginUser(response));
@@ -17,6 +20,7 @@ export const useForm = () => {
       localStorage.setItem("idUser", response.idUser);
       toast.success("Inicio de Sesion Exitoso");
       setTimeout(() => {
+        setIsloadding(false);
         navigate("/home");
       }, 1500);
     }
@@ -49,6 +53,7 @@ export const useForm = () => {
   };
 
   return {
+    isLoadding,
     fetchSignInUser,
     fetchSignUp,
     logOut,

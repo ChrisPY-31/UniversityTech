@@ -6,17 +6,35 @@ import DifficultyLevel from '../../components/NewCourse/DifficultyLevel'
 import GeneralInfo from '../../components/NewCourse/GeneralInfo'
 import ThumbnailUpload from '../../components/NewCourse/ThumbnailUpload'
 import VisibilityStatus from '../../components/NewCourse/VisibilityStatus'
+import CourseCreationStepper from '../../Components/NewCourse/CourseCreationStepper'
+import { useDispatch, useSelector } from 'react-redux'
+import { setNewCourse } from '@/store/Reducer/CourseSlice'
 
 const NewCourse = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [category, setCategory] = useState('Computación en la Nube')
-  const [difficulty, setDifficulty] = useState('Principiante')
+  const [difficulty, setDifficulty] = useState('Basico')
   const [visibility, setVisibility] = useState('Draft')
   const [thumbnail, setThumbnail] = useState(null)
+  const {name} = useSelector(state => state.user)
+  const dispatch = useDispatch();
+
+ const handleNewCourse = () =>{
+    const newCourse = {
+      title,
+      description,
+      category,
+      nevel : difficulty,
+      image: thumbnail,
+      lessons: []
+    }
+    dispatch(setNewCourse(newCourse))
+ }
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <CourseCreationStepper />
       <div className="px-8 py-6">
         <div className="grid grid-cols-3 gap-8">
 
@@ -56,15 +74,17 @@ const NewCourse = () => {
 
             <CoursePreviewCard
               title={title}
+              nameInstructor = {name}
               thumbnail={thumbnail}
               difficulty={difficulty}
               visibility={visibility}
+
             />
           </div>
         </div>
 
         <div className="mt-8">
-          <ActionButtons />
+          <ActionButtons handleNewCourse={handleNewCourse}/>
         </div>
       </div>
 

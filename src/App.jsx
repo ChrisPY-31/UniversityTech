@@ -12,6 +12,7 @@ import ManagerDashboard from "./Pages/Manager/ManagerDashboard";
 import ManagerUsersPage from "./Pages/Manager/ManagerUsersPage";
 import CourseVideo from "./Pages/CourseVideo/CourseVideo";
 import NewLessons from "./Pages/NewLessons/NewLessons";
+import PublishCourse from "./Pages/PublishCourse/PublishCourse";
 import ManagerNewAccount from "./Pages/Manager/ManagerNewAccount";
 import { useUser } from "./hooks/useUser";
 
@@ -36,8 +37,8 @@ function App() {
           <Route path="/video-lecciones" element={ isLoggedIn ? <CourseVideo /> : <Navigate to="/sign-in" /> } />
           <Route path="/notificaciones" element={ isLoggedIn ? <Notification /> : <Navigate to="/sign-in" /> } />
           <Route
-            path="/course/descripcion"
-            element={ isLoggedIn ? <AboutCourse/> : <Navigate to="/sign-in" /> }
+            path="/course/:titulo"
+            element={ isLoggedIn ? <AboutCourse /> : <Navigate to="/sign-in" /> }
           />
 
           {/*Rutas privadas Administrador*/}
@@ -49,6 +50,7 @@ function App() {
           <Route path="/instructor" element={ isLoggedIn ? <InstructorDashboard /> : <Navigate to="/sign-in" /> } />
           <Route path="/cursos/nuevo-curso" element={ isLoggedIn ? <NewCourse/> : <Navigate to="/sign-in" /> } />
           <Route path="/cursos/curriculum" element={ isLoggedIn ? <NewLessons/> : <Navigate to="/sign-in" /> } />
+          <Route path="/cursos/publicar" element={ isLoggedIn ? <PublishCourse/> : <Navigate to="/sign-in" /> } />
           {/*Rutas privadas Estudiante*/}
           
         </Route>

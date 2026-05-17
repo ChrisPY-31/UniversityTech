@@ -42,28 +42,23 @@ const getCourseDescription = async (id) => {
 
 //Crea un nuevo curso de la API
 const createCourse = async (course) => {
-  try {
     const response = await axios.post(`${API_URL}/courses`, course , {
       withCredentials:true
     });
     return response.data;
-  } catch (error) {
-    throw error;
-  }
+  
 };
 
 //Actualiza un curso de la APi por ID
 const updateCourse = async (id, course) => {
-  try {
     const response = await axios.put(`${API_URL}/courses/${id}}`, course, {
       withCredentials:true
     });
 
     return response.data;
-  } catch (error) {
-    throw error;
-  }
+  
 };
+
 
 //Eliminar un curso de la API por ID
 const deleteCourse = async (id) => {

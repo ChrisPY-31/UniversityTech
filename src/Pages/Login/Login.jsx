@@ -4,89 +4,107 @@ import { Input } from "@/components/ui/input";
 import React, { useState } from "react";
 import logoNexusTechP from "../../assets/LogoNexusTechP.png";
 import { useForm } from "@/hooks/useForm";
+import toast from "react-hot-toast";
+import { Navigate } from "@/components/Navigate";
 
 const Login = () => {
-  const [username , setUsername]= useState("")
-  const [password , setPassword] = useState("");
-  
-  const { fetchSignInUser } = useForm();
+  const [message, setMessage] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const { fetchSignInUser, isLoadding } = useForm();
 
   const handleSubmit = () => {
-    
-    const data ={
-      username,
-      password
+    if ([username, password].includes("")) {
+      setMessage("Verifique que todos los campos esten llenos");
+      return;
     }
 
+    const data = {
+      username,
+      password,
+    };
+
     fetchSignInUser(data);
-    
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <FieldGroup
-        className="w-[420px] bg-gray-900 border border-gray-800 rounded-2xl p-7
+    <div>
+      <Navigate />
+
+      <div className=" flex items-center justify-center h-[80vh]">
+        <FieldGroup
+          className="w-[420px] bg-gray-900 border border-gray-800 rounded-2xl p-7
     shadow-md transition-all duration-300 ease-out
      hover:shadow-[0_0_30px_rgba(34,211,238,0.2)]
     hover:border-cyan-400/40"
-      >
-        <div className="flex flex-col items-center mb-6">
-          <img src={logoNexusTechP} alt="Logo" className="w-24 py-2 " />
+        >
+          <div className="flex flex-col items-center mb-6">
+            <img src={logoNexusTechP} alt="Logo" className="w-24 py-2 " />
 
-          <h1 className="text-white font-bold text-2xl mt-3">Nexus Tech</h1>
-          <p className="text-gray-400 text-sm text-center mt-1">
-            Aprender nunca fue tan accesible
-          </p>
-        </div>
-
-        <Field className="mb-4">
-          <FieldLabel className="text-[15px] text-gray-400">
-            Usuario:
-          </FieldLabel>
-
-          <Input
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="2710116"
-            className="mt-1 w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white outline-none focus:border-cyan-400 transition"
-          />
-        </Field>
-
-        <Field className="mb-4">
-          <div className="flex justify-between items-center">
-            <FieldLabel
-              htmlFor="password"
-              className="text-[15px] text-gray-400"
-            >
-              Contraseña:
+            <h1 className="text-white font-bold text-2xl mt-3">Nexus Tech</h1>
+            <p className="text-gray-400 text-sm text-center mt-1">
+              Nunca pares de aprender
+            </p>
+          </div>
+          {message && (
+            <div>
+              <p className="text-red-500 text-lg text-center mt-1">{message}</p>
+            </div>
+          )}
+          <Field className="mb-4">
+            <FieldLabel className="text-[15px] text-gray-400">
+              Usuario:
             </FieldLabel>
 
-            <span className="text-sm text-cyan-400 underline cursor-pointer">
-              Olvidaste tu contraseña?
-            </span>
-          </div>
+            <Input
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="2710116"
+              className="mt-1 w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white outline-none focus:border-cyan-400 transition"
+            />
+          </Field>
 
-          <Input
-            id="password"
-            type="password"
-            placeholder="********"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white outline-none focus:border-cyan-400 transition"
-          />
-        </Field>
+          <Field className="mb-4">
+            <div className="flex justify-between items-center">
+              <FieldLabel
+                htmlFor="password"
+                className="text-[15px] text-gray-400"
+              >
+                Contraseña:
+              </FieldLabel>
 
-        <Field>
-          <Button
-            type="submit"
-            className="w-full py-3 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-cyan-400 to-blue-500 hover:opacity-90 transition cursor-pointer"
-            onClick={handleSubmit}
-          >
-            Ingresar
-          </Button>
-        </Field>
-      </FieldGroup>
+              <span className="text-sm text-cyan-400 underline cursor-pointer">
+                Olvidaste tu contraseña?
+              </span>
+            </div>
+
+            <Input
+              id="password"
+              type="password"
+              placeholder="********"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-1 w-full p-3 rounded-lg bg-gray-800 border border-gray-700 text-white outline-none focus:border-cyan-400 transition"
+            />
+          </Field>
+
+          <Field>
+            <Button
+              type="submit"
+              className="w-full py-3 rounded-xl text-base font-semibold text-white bg-gradient-to-r from-cyan-400 to-blue-500 hover:opacity-90 transition cursor-pointer"
+              onClick={handleSubmit}
+            >
+              {isLoadding ? (
+                <div className="loader2 z-50 absolute"></div>
+              ) : (
+                "Ingresar"
+              )}
+            </Button>
+          </Field>
+        </FieldGroup>
+      </div>
     </div>
   );
 };

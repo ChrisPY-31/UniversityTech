@@ -1,7 +1,8 @@
 import React from 'react'
 import { FaEye, FaUpload, FaPlus } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
-const CurriculumHeader = ({ onAddSection }) => {
+const CurriculumHeader = ({ onAddSection ,handlePublishedCourse}) => {
   return (
     <div className="px-8 py-6">
       <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
@@ -24,10 +25,14 @@ const CurriculumHeader = ({ onAddSection }) => {
             <FaEye />
             Vista Previa
           </button>
-          <button className="flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-900 text-white text-sm font-bold hover:bg-blue-800 transition-colors">
+          <Link
+            onClick={()=>handlePublishedCourse()}
+            //to="/cursos/publicar"
+            className="flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-900 text-white text-sm font-bold hover:bg-blue-800 transition-colors"
+          >
             <FaUpload />
             Publicar curso
-          </button>
+          </Link>
         </div>
       </div>
 

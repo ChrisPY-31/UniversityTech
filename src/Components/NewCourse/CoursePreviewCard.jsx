@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CoursePreviewCard = ({ title, thumbnail, difficulty, visibility }) => {
+const CoursePreviewCard = ({ title, nameInstructor ,thumbnail, difficulty, visibility }) => {
     return (
         <div className="rounded-xl overflow-hidden border border-gray-200 shadow-sm">
             <div className="h-40 bg-gradient-to-br from-blue-900 to-teal-600">
@@ -44,7 +44,7 @@ const CoursePreviewCard = ({ title, thumbnail, difficulty, visibility }) => {
                 <div className="flex items-center justify-between mt-3">
                     <div className="flex items-center gap-2">
                         <div className="w-6 h-6 rounded-full bg-white/30" />
-                        <span className="text-sm text-white/70">Nombre del Intructor</span>
+                        <span className="text-sm text-white/70">{nameInstructor}</span>
                     </div>
                     <span className="text-sm font-bold text-teal-400">GRATIS</span>
                 </div>

@@ -2,38 +2,33 @@ import React, { useState } from "react";
 import CourseDescription from "../../components/AboutCourse/CourseDescription";
 import ModuleSection from "../../components/ModuleSection";
 import { HiPlay, HiOutlineClock } from "react-icons/hi";
+import { useSelector } from "react-redux";
 import { INITIAL_MODULES } from "../../datos";
 import CoursesCard from "@/components/Courses/CoursesCard";
 
 const AboutCourse = () => {
   const [modules] = useState(INITIAL_MODULES);
-  const courses = [
-    {
-      id: 1,
-      title: "Curso de desarrollo web",
-      description: "Descubre que técnias y métodos existen...",
-      image: "https://i.ytimg.com/vi/bYOjmW-740M/maxresdefault.jpg",
-      level: "INTERMEDIATE",
-      duration: "28h 40m",
-      rating: 4.1,
-    },
-  ];
+  const {coursesDesc} = useSelector(state => state.courses)
+ 
   return (
     <section className="w-[95%] mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 text-[#E6EDF3] py-8">
-      <CourseDescription />
+      <CourseDescription 
+      titulo={coursesDesc.title}
+      publicado={coursesDesc.create} 
+      nivel={coursesDesc.nevel}
+      clases={20} //aqui tiene que ir las lessiones
+      descripcion={coursesDesc.description}
+
+      />
       <div>
         <div>
-          {courses.map((course) => {
-            return (
-              <CoursesCard
-                key={course.id}
-                titulo={course.title}
-                descripcion={course.description}
-                imagen={course.image}
-                puntuacion={course.rating}
-              />
-            );
-          })}
+          {<CoursesCard
+                key={coursesDesc.id}
+                id={coursesDesc.id}
+                titulo={coursesDesc.title}
+                descripcion={coursesDesc.description}
+                imagen={coursesDesc.image}
+              />}
         </div>
       </div>
       <div className="mt-8 col-start-1 col-end-3">
