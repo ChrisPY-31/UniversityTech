@@ -4,17 +4,21 @@ import { Link} from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 import { useForm } from "@/hooks/useForm";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const Navigate = ({ isAuth }) => {
   const [isMenuOpen, setIsOpenMenu] = useState(false);
   const {logOut} = useForm();
   const {user} = useSelector((state ) => state.user)
+  const navi = useNavigate();
  
   return (
     <header>
       <nav>
         <div className="w-[95%] mx-auto flex justify-between items-center ">
-          <img src={logoNexus} alt="Logo Nexus" className="w-20 py-2 " />
+          <img 
+          onClick={()=> {isAuth ? navi("/home") : navi("/")}}
+          src={logoNexus} alt="Logo Nexus" className="w-20 py-2 cursor-pointer" />
           <div>
             {isAuth ? (
               <div className="flex items-center gap-4">

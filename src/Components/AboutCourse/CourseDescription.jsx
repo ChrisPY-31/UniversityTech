@@ -2,15 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CoursesCard from "../Courses/CoursesCard";
 
-const CourseDescription = () => {
+const CourseDescription = ({titulo , publicado, nivel , clases , horasContenido , descripcion }) => {
 
-
+  
   return (
     <div className="text-[#E6EDF3] py-8 col-start-1 col-end-3">
       <div className="lg:col-span-2 space-y-6">
         <div>
           <h1 className="text-4xl md:text-4xl font-bold leading-tight">
-            Curso Desarrollo Web para Diseñadores
+            {titulo ? titulo : "Pruebas"}
           </h1>
           <p className="text-[#AAB4C0] mt-3 text-sm">
             Publicado el 07 de diciembre de 2025
@@ -32,7 +32,7 @@ const CourseDescription = () => {
                 d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
               ></path>
             </svg>
-            Nivel Básico
+            Nivel {nivel ? nivel: "basico"}
           </span>
           <span className="border border-white/20 text-[#AAB4C0] px-3 py-1.5 rounded-md flex items-center gap-2 text-sm">
             <svg
@@ -86,10 +86,7 @@ const CourseDescription = () => {
 
         <div className="text-[#AAB4C0] leading-relaxed text-[17px] pt-4">
           <p>
-            Desarrolla habilidades para colaborar eficazmente con equipos de
-            desarrollo web. Comprende conceptos clave como HTML, CSS,
-            JavaScript, Git y más. Aprende a implementar diseños en Figma y
-            optimizar tu comunicación técnica.
+           {descripcion ? descripcion: ""}
           </p>
         </div>
 

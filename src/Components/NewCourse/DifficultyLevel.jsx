@@ -1,6 +1,6 @@
 import React from 'react'
 const DifficultyLevel = ({ difficulty, setDifficulty }) => {
-    const levels = ['Principiante', 'Intermedio', 'Avanzado']
+    const levels = ['basico', 'Intermedio', 'Avanzado']
 
     return (
         <div>

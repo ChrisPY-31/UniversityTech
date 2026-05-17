@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
-import CurriculumHeader from '../../components/NewLessons/CurriculumHeader'
-import ModuleSection from '../../components/ModuleSection'
-import LessonCard from '../../components/NewLessons/LessonCard'
-import AddSectionModal from '../../components/NewLessons/AddSectionModal'
-import AddLessonModal from '../../components/NewLessons/AddLessonModal'
-import { FaPen, FaTrash, FaGripVertical, FaPlus } from 'react-icons/fa'
-import { INITIAL_MODULES } from '../../datos'
-
+import React, { useState } from "react";
+import CurriculumHeader from "../../components/NewLessons/CurriculumHeader";
+import CourseCreationStepper from "../../Components/NewCourse/CourseCreationStepper";
+import ModuleSection from "../../components/ModuleSection";
+import LessonCard from "../../components/NewLessons/LessonCard";
+import AddSectionModal from "../../components/NewLessons/AddSectionModal";
+import AddLessonModal from "../../components/NewLessons/AddLessonModal";
+import { FaPen, FaTrash, FaGripVertical, FaPlus } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { setAddNewLessons } from "@/store/Reducer/CourseSlice";
+import toast from "react-hot-toast";
 
 const NewLessons = () => {
-  const [modules, setModules] = useState(INITIAL_MODULES)
-  const [sectionModalOpen, setSectionModalOpen] = useState(false)
-  const [lessonModalOpen, setLessonModalOpen] = useState(false)
-  const [activeModuleId, setActiveModuleId] = useState(null)
+  const [modules, setModules] = useState([]);
+  const [sectionModalOpen, setSectionModalOpen] = useState(false);
+  const [lessonModalOpen, setLessonModalOpen] = useState(false);
+  const [activeModuleId, setActiveModuleId] = useState(null);
+  const dispatch = useDispatch();
 
   const handleAddSection = (sectionData) => {
     const newModule = {
@@ -20,37 +23,71 @@ const NewLessons = () => {
       number: modules.length + 1,
       title: sectionData.title,
       description: sectionData.description,
-      lessons: [],
-    }
-    setModules([...modules, newModule])
-  }
+      videos: [],
+    };
+    setModules([...modules, newModule]);
+  };
 
-  const handleAddLesson = (lessonData) => {
-    setModules(modules.map((mod) => {
-      if (mod.id === activeModuleId) {
-        return {
-          ...mod,
-          lessons: [...mod.lessons, {
-            id: Date.now(),
-            title: lessonData.title,
-            status: 'uploading',
-            progress: '0%',
-            estimated: 'Procesando...',
-          }],
+  const handleAddLesson = (videoData) => {
+    setModules(
+      modules.map((mod) => {
+        if (mod.id === activeModuleId) {
+          return {
+            ...mod,
+            videos: [
+              ...mod.videos,
+              {
+                id: Date.now(),
+                title: videoData.title,
+                description: videoData.description,
+                status: "uploading",
+                progress: "0%",
+                estimated: "Procesando...",
+                urlVideo: videoData.video,
+              },
+            ],
+          };
         }
-      }
-      return mod
-    }))
-  }
+        return mod;
+      }),
+    );
+  };
 
   const openLessonModal = (moduleId) => {
-    setActiveModuleId(moduleId)
-    setLessonModalOpen(true)
-  }
+    setActiveModuleId(moduleId);
+    setLessonModalOpen(true);
+  };
+
+  const handlePublishedCourse = () => {
+    console.log("entroooo");
+    if(Object.keys(modules).length === 0){
+      toast.error("No has agregado lecciones");
+      return;
+    }
+
+    const mapNewLesson = modules.map((module) => ({
+      idCourse: 0,
+      title: module.title,
+      description: module.description,
+      video: module.videos.map((video) => ({
+        idLesson: 0,
+        title: video.title,
+        description: video.description,
+        urlVideo: video.urlVideo,
+        durationSeg: 0,
+        published: true,
+      })),
+    }));
+    dispatch(setAddNewLessons(mapNewLesson))
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <CurriculumHeader onAddSection={() => setSectionModalOpen(true)} />
+      <CourseCreationStepper />
+      <CurriculumHeader
+        onAddSection={() => setSectionModalOpen(true)}
+        handlePublishedCourse={handlePublishedCourse}
+      />
 
       <div className="flex-1 px-8 py-4">
         {modules.map((module) => (
@@ -78,13 +115,12 @@ const NewLessons = () => {
               </button>
             }
           >
-            {module.lessons.map((lesson) => (
+            {module.videos.map((lesson) => (
               <LessonCard key={lesson.id} lesson={lesson} />
             ))}
           </ModuleSection>
         ))}
       </div>
-
 
       <AddSectionModal
         isOpen={sectionModalOpen}
@@ -98,7 +134,7 @@ const NewLessons = () => {
         onSave={handleAddLesson}
       />
     </div>
-  )
-}
+  );
+};
 
-export default NewLessons
+export default NewLessons;

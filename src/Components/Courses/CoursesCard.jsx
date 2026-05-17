@@ -7,23 +7,18 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
-const CoursesCard = ({ titulo, descripcion, imagen, puntuacion }) => {
+const CoursesCard = ({ id ,titulo, descripcion, imagen, puntuacion , handleClick }) => {
 
     const [hovered, setHovered] = useState(false);
-    const navigate = useNavigate();
-
-  const handleClick = () => {
-        navigate("/course/descripcion");
-  };
 
 
   return (
     <Card
       className="relative w-full max-w-sm pt-0 overflow-hidden cursor-pointer my-3"
-      onClick={handleClick}
+      onClick={()=>handleClick(id , titulo)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -42,7 +37,7 @@ const CoursesCard = ({ titulo, descripcion, imagen, puntuacion }) => {
           style={{ background: hovered ? "rgba(0,0,0,0.52)" : "rgba(0,0,0,0)" }}
         >
           <button
-            onClick={(e) => { e.stopPropagation(); handleClick(); }}
+            onClick={(e) => { e.stopPropagation(); handleClick; }}
             className="flex items-center gap-2  text-white font-medium px-5 py-2 rounded-full text-sm transition-all duration-300"
             style={{
               opacity: hovered ? 1 : 0,
