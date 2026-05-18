@@ -68,11 +68,9 @@ export const Navigate = ({ isAuth }) => {
                 )}
               </div>
             ) : (
-              <div>
-                <button className="btn-primary">
-                  <Link to={"sign-in"}>Inicio de Sesion</Link>
+                <button className="btn-primary cursor-pointer" onClick={()=> navi("sign-in")}>
+                  Inicio de sesion
                 </button>
-              </div>
             )}
           </div>
         </div>

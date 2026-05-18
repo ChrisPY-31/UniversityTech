@@ -1,6 +1,13 @@
 import { API_URL } from "@/api";
 import axios from "axios";
 
+const getPageUsers = async ()=>{
+  const response = await axios.get(`${API_URL}/persons` ,{
+    withCredentials:true,
+  });
+  return response
+}
+
 const getPerson = async (idPerson) => {
   try {
     const response = await axios.get(`${API_URL}/person/${idPerson}`, {
@@ -34,4 +41,4 @@ const updatePerson = async (idPerson, person) => {
   }
 };
 
-export { getPerson, updatePerson, savePerson };
+export {getPageUsers, getPerson, updatePerson, savePerson };
