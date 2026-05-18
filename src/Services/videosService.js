@@ -2,8 +2,8 @@ import { API_URL } from "@/api";
 import axios from "axios";
 
 
-export const saveVideo =  async (video){
-    const response = 
+export const saveVideo =  async (video)=>{
+    const response = await axios.post(`${API_URL}`)
 }
 
 export const patchVideoCourse = async (id , videoUrl) =>{
