@@ -44,6 +44,8 @@ export const useForm = () => {
       localStorage.removeItem("isLoggedIn");
       localStorage.removeItem("role");
       localStorage.removeItem("idUser");
+      localStorage.removeItem("idCourse")
+
       toast.success("Cierre de Sesion Exitoso");
       setTimeout(() => {
         navigate("/");

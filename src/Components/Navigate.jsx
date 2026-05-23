@@ -10,8 +10,7 @@ export const Navigate = ({ isAuth }) => {
   const [isMenuOpen, setIsOpenMenu] = useState(false);
   const {logOut} = useForm();
   const {user} = useSelector((state ) => state.user)
-  const navi = useNavigate();
- 
+  const navi = useNavigate(); 
   return (
     <header>
       <nav>
@@ -46,7 +45,7 @@ export const Navigate = ({ isAuth }) => {
                     <hr />
                     <ul>
                       <Link
-                        to={"profile"}
+                        to={"/user/profile"}
                         className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                       >
                         Perfil

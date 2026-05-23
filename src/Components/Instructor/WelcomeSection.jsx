@@ -1,8 +1,18 @@
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
-import { Link} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { clearEditingCourse } from '@/store/Reducer/CourseSlice'
 
 const WelcomeSection = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const handleNewCourse = () => {
+    dispatch(clearEditingCourse())
+    navigate('/cursos/nuevo-curso')
+  }
+
   return (
     <section className="flex justify-between items-start">
       <div>
@@ -16,10 +26,13 @@ const WelcomeSection = () => {
           Este mes has recibido 50 nuevo enrolamientos de personas que desean aprender.
         </p>
       </div>
-      <Link to="/cursos/nuevo-curso" className="flex items-center cursor-pointer gap-2 bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition-colors whitespace-nowrap">
+      <button
+        onClick={handleNewCourse}
+        className="flex items-center cursor-pointer gap-2 bg-blue-900 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition-colors whitespace-nowrap"
+      >
         <FaPlus className="text-sm" />
         Subir un nuevo curso
-      </Link>
+      </button>
     </section>
   )
 }

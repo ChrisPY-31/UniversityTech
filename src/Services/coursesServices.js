@@ -3,16 +3,6 @@
 
 import { API_URL } from "@/api";
 import axios from "axios";
-const API_PRUEBA = "https://jsonplaceholder.typicode.com/posts"; //Api de prueba;
-
-const Videos = async () => {
-  try {
-    const response = await axios.get(`${API_PRUEBA}?_limit=10`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
 
 //Traer los cursos desde la API
 const getCourses = async () => {
@@ -51,7 +41,7 @@ const createCourse = async (course) => {
 
 //Actualiza un curso de la APi por ID
 const updateCourse = async (id, course) => {
-    const response = await axios.put(`${API_URL}/courses/${id}}`, course, {
+    const response = await axios.put(`${API_URL}/courses/${id}`, course, {
       withCredentials:true
     });
 
@@ -62,22 +52,27 @@ const updateCourse = async (id, course) => {
 
 //Eliminar un curso de la API por ID
 const deleteCourse = async (id) => {
-  try{
     const response = await axios.delete(`${API_URL}/courses/${id}`, {
       withCredentials:true
     });
-    return response.data;
+    return response.status;
     
-  }catch(error){
-    throw error;
-  }
 };
 
+const courseImageUpload = async (idCourse , urlImage) =>{
+  const form = new FormData();
+  form.append("image" , urlImage)
+  const response = await axios.patch(`${API_URL}/course/${idCourse}/image`, form ,{
+    withCredentials:true
+  })
+  return response;
+}
+
 export {
-  Videos,
   getCourses,
   getCourseDescription,
   createCourse,
   updateCourse,
   deleteCourse,
+  courseImageUpload
 };

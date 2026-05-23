@@ -1,5 +1,5 @@
-import Statistics from "../../Components/Manager/Statistics";
-import Users from "../../Components/Manager/Users";
+import Statistics from "../../components/Manager/Statistics";
+import Users from "../../components/Manager/Users";
 import { courses } from "../../datos";
 
 const ManagerDashboard = () => {

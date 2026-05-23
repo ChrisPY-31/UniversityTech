@@ -1,7 +1,7 @@
 import React from 'react'
-import { FaPlay, FaCloudUploadAlt, FaEllipsisV } from 'react-icons/fa'
+import { FaPlay, FaCloudUploadAlt, FaPen, FaTrash } from 'react-icons/fa'
 
-const LessonCard = ({ lesson }) => {
+const LessonCard = ({ lesson, onEdit, onDelete }) => {
   return (
     <div className="flex items-center gap-4 p-4 border-t border-gray-100">
       <div className="w-28 h-20 rounded-lg bg-gray-800 flex items-center justify-center flex-shrink-0 relative overflow-hidden">
@@ -24,28 +24,28 @@ const LessonCard = ({ lesson }) => {
             <>
               <span className="w-2 h-2 rounded-full bg-green-500" />
               <span className="text-sm text-green-600">Uploaded</span>
-              <span className="text-gray-300">•</span>
-              <span className="text-sm text-gray-400">{lesson.modified}</span>
             </>
           ) : (
             <>
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
               <span className="text-sm text-blue-500">Uploading {lesson.progress}...</span>
-              <span className="text-gray-300">•</span>
-              <span className="text-sm text-gray-400">{lesson.estimated}</span>
             </>
           )}
         </div>
       </div>
 
-      <div className="flex items-center gap-3 flex-shrink-0">
-        {lesson.status === 'uploaded' ? (
-          <span className="text-sm font-medium text-blue-600 hover:text-blue-800 cursor-pointer">Manage Video</span>
-        ) : (
-          <span className="text-sm font-medium text-red-500 hover:text-red-700 cursor-pointer">Cancel</span>
-        )}
-        <button className="text-gray-400 hover:text-gray-600">
-          <FaEllipsisV />
+      <div className="flex items-center gap-2 flex-shrink-0">
+        <button
+          onClick={() => onEdit?.(lesson)}
+          className="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-gray-50 transition-colors"
+        >
+          <FaPen className="text-xs" />
+        </button>
+        <button
+          onClick={() => onDelete?.(lesson)}
+          className="w-8 h-8 rounded-lg border border-red-200 flex items-center justify-center text-red-500 hover:bg-red-50 transition-colors"
+        >
+          <FaTrash className="text-xs" />
         </button>
       </div>
     </div>

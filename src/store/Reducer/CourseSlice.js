@@ -1,27 +1,36 @@
-import NewCourse from '@/Pages/NewCourse/NewCourse';
 import { createSlice } from '@reduxjs/toolkit'
 
 export const courseSlice = createSlice({
   name: 'courses',
   initialState: {
     coursesDesc: [],
-    newCourse: []
+    newCourse: {},
+    lessons:[],
+    videos:[],
+    editingCourse: null,
   },
   reducers: {
     setCourseDesc: (state , action) =>{
       state.coursesDesc = action.payload;
     },
     setNewCourse: (state , action) =>{
-      state.NewCourse = action.payload;
+      state.newCourse = action.payload
     },
     setAddNewLessons: (state, action) =>{
-      console.log([...state.NewCourse.lessons , action.payload])
-      state.NewCourse.lessons = action.payload
-    }
+      state.newCourse.lessons = action.payload
+    },
+    setAddNewVideos: (state , action) =>{
+      [...state.videos , action.payload]
+    },
+    setEditingCourse: (state, action) => {
+      state.editingCourse = action.payload;
+    },
+    clearEditingCourse: (state) => {
+      state.editingCourse = null;
+    },
   },
 })
 
-// Action creators are generated for each case reducer function
-export const { setCourseDesc ,setNewCourse ,setAddNewLessons} = courseSlice.actions
+export const { setCourseDesc, setNewCourse, setAddNewLessons, setAddNewVideos, setEditingCourse, clearEditingCourse } = courseSlice.actions
 
 export default courseSlice.reducer

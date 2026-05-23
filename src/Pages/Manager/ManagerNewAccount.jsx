@@ -80,9 +80,10 @@ const generateUsername = (name, lastname) => {
         password: values.password,
         email: values.email,
         role: values.role,
-        nombre: values.name,
-        apellido: values.lastname
+        name: values.name,
+        lastName: values.lastname
       }
+      console.log(newUser)
      
       fetchSignUp(newUser);
       

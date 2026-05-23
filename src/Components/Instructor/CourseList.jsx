@@ -1,31 +1,11 @@
 import React from 'react'
 import { FaSlidersH, FaTh } from 'react-icons/fa'
 import CourseCard from './CourseCard'
+import { object } from 'yup'
 
-const COURSES_DATA = [
-  {
-    id: 1,
-    title: 'Pruebas y Mantenimiento de Software',
-    description: 'Descubre que técnias y métodos existen...',
-    image: 'https://ui-avatars.com/api/?name=QC&background=1e3a5f&color=fff&size=200',
-    level: 'INTERMEDIATE',
-    duration: '28h 40m',
-    students: 75,
-    rating: 4.1,
-  },
-  {
-    id: 2,
-    title: 'Ciencia de Datos e IA',
-    description: 'Adentrate en la manipulación de datos para...',
-    image: 'https://ui-avatars.com/api/?name=DS&background=2d5a3d&color=fff&size=200',
-    level: 'ADVANCED',
-    duration: '56h 30m',
-    students: 75,
-    rating: 3.5,
-  },
-]
 
-const CourseList = () => {
+const CourseList = ({courses , fetchDeleteCourse}) => {
+
   return (
     <section>
       <div className="flex items-center justify-between mb-6">
@@ -40,9 +20,9 @@ const CourseList = () => {
         </div>
       </div>
       <div className="space-y-4">
-        {COURSES_DATA.map((course) => (
-          <CourseCard key={course.id} course={course} />
-        ))}
+        {Object.keys(courses).length > 0 ? courses.map((course) => (
+          <CourseCard key={course.id} course={course} fetchDeleteCourse={fetchDeleteCourse}/>
+        )): <h3 className='text-black text-center text-2xl'>No tienes cursos actualmente</h3>}
       </div>
     </section>
   )

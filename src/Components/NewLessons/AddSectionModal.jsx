@@ -1,20 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaTimes } from 'react-icons/fa'
 
-const AddSectionModal = ({ isOpen, onClose, onSave }) => {
+const AddSectionModal = ({ isOpen, onClose, onSave, initialValues }) => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [objectives, setObjectives] = useState('')
+  const [saving, setSaving] = useState(false)
+
+  useEffect(() => {
+    if (isOpen) {
+      setTitle(initialValues?.title || '')
+      setDescription(initialValues?.description || '')
+      setObjectives(initialValues?.objectives || '')
+    }
+  }, [isOpen])
 
   if (!isOpen) return null
 
-  const handleSave = () => {
-    if (title.trim()) {
-      onSave({ title, description, objectives })
-      setTitle('')
-      setDescription('')
-      setObjectives('')
+  const isEditing = !!initialValues
+
+  const handleSave = async () => {
+    if (!title.trim()) return
+    setSaving(true)
+    try {
+      await onSave({ title, description, objectives })
       onClose()
+    } catch {
+      // error shown by hook
+    } finally {
+      setSaving(false)
     }
   }
 
@@ -24,8 +38,12 @@ const AddSectionModal = ({ isOpen, onClose, onSave }) => {
 
       <div className="relative bg-white rounded-2xl w-full max-w-xl shadow-xl overflow-hidden animate-[fadeIn_0.3s_ease-out]">
         <div className="bg-blue-900 px-8 py-6 text-white">
-          <p className="text-sm font-medium text-blue-300 uppercase tracking-wider">Nuevo Módulo</p>
-          <h2 className="text-2xl font-bold mt-1">Añadir Nueva Sección</h2>
+          <p className="text-sm font-medium text-blue-300 uppercase tracking-wider">
+            {isEditing ? 'Editar Módulo' : 'Nuevo Módulo'}
+          </p>
+          <h2 className="text-2xl font-bold mt-1">
+            {isEditing ? 'Editar Sección' : 'Añadir Nueva Sección'}
+          </h2>
           <button
             onClick={onClose}
             className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
@@ -84,9 +102,10 @@ const AddSectionModal = ({ isOpen, onClose, onSave }) => {
           </button>
           <button
             onClick={handleSave}
-            className="px-8 py-3 rounded-lg bg-blue-900 text-white text-sm font-bold hover:bg-blue-800 transition-colors"
+            disabled={saving}
+            className="px-8 py-3 rounded-lg bg-blue-900 text-white text-sm font-bold hover:bg-blue-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Guardar Sección →
+            {saving ? 'Guardando...' : isEditing ? 'Actualizar Sección →' : 'Guardar Sección →'}
           </button>
         </div>
       </div>

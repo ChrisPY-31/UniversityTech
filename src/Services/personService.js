@@ -2,10 +2,10 @@ import { API_URL } from "@/api";
 import axios from "axios";
 
 const getPageUsers = async ()=>{
-  const response = await axios.get(`${API_URL}/persons` ,{
+  const {data} = await axios.get(`${API_URL}/persons` ,{
     withCredentials:true,
   });
-  return response
+  return data.content;
 }
 
 const getPerson = async (idPerson) => {
@@ -17,6 +17,13 @@ const getPerson = async (idPerson) => {
   } catch (error) {
     throw error;
   }
+};
+
+const getPersonComplete = async (idPerson) => {
+  const response = await axios.get(`${API_URL}/person/${idPerson}/profile`, {
+    withCredentials: true,
+  });
+  return response.data;
 };
 
 const savePerson = async (person) => {
@@ -41,4 +48,11 @@ const updatePerson = async (idPerson, person) => {
   }
 };
 
-export {getPageUsers, getPerson, updatePerson, savePerson };
+const deleteUser = async (idUser) =>{
+  const response = await axios.delete(`${API_URL}/users/${idUser}`, {
+    withCredentials: true,
+  })
+  return response;
+}
+
+export {getPageUsers, getPerson, updatePerson, savePerson ,getPersonComplete , deleteUser};
