@@ -13,7 +13,8 @@ const Courses = () => {
 
   const handleDescription = (id , titulo) =>{
         navigate(`/course/${titulo}`);
-        courseById(id);
+        localStorage.setItem("idCourse" , id);
+        courseById();
   }
   
   

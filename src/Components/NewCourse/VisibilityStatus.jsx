@@ -9,9 +9,9 @@ const VisibilityStatus = ({ visibility, setVisibility }) => {
             </p>
             <div className="flex gap-2">
                 <button
-                    onClick={() => setVisibility('Draft')}
+                    onClick={() => setVisibility(false)}
                     className={`px-6 py-2 rounded-lg text-sm font-medium transition-colors
-                    ${visibility === 'Draft'
+                    ${visibility === false
                             ? 'bg-white text-gray-900 border border-gray-300 shadow-sm'
                             : 'bg-transparent text-gray-500 hover:bg-gray-100'
                         }`}
@@ -19,9 +19,9 @@ const VisibilityStatus = ({ visibility, setVisibility }) => {
                     Borrador
                 </button>
                 <button
-                    onClick={() => setVisibility('Published')}
+                    onClick={() => setVisibility(true)}
                     className={`px-6 py-2 rounded-lg text-sm font-medium transition-colors
-                    ${visibility === 'Published'
+                    ${visibility === true
                             ? 'bg-white text-gray-900 border border-gray-300 shadow-sm'
                             : 'bg-transparent text-gray-500 hover:bg-gray-100'
                         }`}

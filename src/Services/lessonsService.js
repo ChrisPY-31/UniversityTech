@@ -6,10 +6,10 @@ const getLessonsByCourse = async (idCourse) => {
     const response = await axios.get(`${API_URL}/cursos/${idCourse}/lessons`, {
       withCredentials: true,
     });
+    return response.data
   } catch (error) {
     throw error;
   }
-  return response.data;
 };
 
 const getLessons = async (idCourse) => {
@@ -34,9 +34,9 @@ const saveLessons = async (Lessons) => {
   }
 };
 
-const updateLesson = async (id, lesson) => {
+const updateLesson = async (idLesson ,lesson) => {
   try {
-    const response = await axios.put(`${API_URL}/lessons/${id}`, lesson, {
+    const response = await axios.put(`${API_URL}/lessons/${idLesson}`, lesson, {
       withCredentials: true,
     });
     return response.data;

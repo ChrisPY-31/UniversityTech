@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaCloudUploadAlt } from 'react-icons/fa'
 
-const ThumbnailUpload = ({ thumbnail, setThumbnail }) => {
+const ThumbnailUpload = ({ setThumbnail, setThumbnailPreview }) => {
+    const [preview, setPreview] = useState(null)
 
-    const handleFileChange = (e) => { // Convertidor archivo-imagen
+    const handleFileChange = (e) => {
         const file = e.target.files[0]
         if (file) {
-            const imageUrl = URL.createObjectURL(file) // Crea archivo url temporal que el navegador usa para mostrar la imagen sin subirla necesariamente 
-            setThumbnail(imageUrl) // Se guarda esta imagen para hacerle un preview
+            setThumbnail(file) // Se guarda el File object real para enviarlo al servidor
+            const url = URL.createObjectURL(file)
+            setPreview(url)
+            if (setThumbnailPreview) setThumbnailPreview(url) // Para preview en otros componentes
         }
     }
 
@@ -16,13 +19,13 @@ const ThumbnailUpload = ({ thumbnail, setThumbnail }) => {
             <h3 className="text-xl font-bold text-gray-900 mb-4">Miniatura del Curso</h3>
 
             <label className="block border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer hover:border-blue-400 transition-colors">
-                {thumbnail ? (
+                {preview ? (
                     <img
-                        src={thumbnail}
+                        src={preview}
                         alt="Thumbnail preview"
                         className="w-full h-40 object-cover rounded-lg"
                     />
-                ) : ( // Ternario 
+                ) : ( // Ternario
                     <div>
                         <FaCloudUploadAlt className="text-4xl text-blue-400 mx-auto mb-3" />
                         <p className="text-sm font-bold text-gray-700">

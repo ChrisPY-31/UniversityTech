@@ -15,6 +15,7 @@ import NewLessons from "./Pages/NewLessons/NewLessons";
 import PublishCourse from "./Pages/PublishCourse/PublishCourse";
 import ManagerNewAccount from "./Pages/Manager/ManagerNewAccount";
 import { useUser } from "./hooks/useUser";
+import UserPorfile from "./Pages/UserPorfile/UserProfile";
 
 function App() {
   const location = useLocation();
@@ -39,6 +40,10 @@ function App() {
           <Route
             path="/course/:titulo"
             element={ isLoggedIn ? <AboutCourse /> : <Navigate to="/sign-in" /> }
+          />
+          <Route
+            path="/user/profile"
+            element={ isLoggedIn ? <UserPorfile /> : <Navigate to="/sign-in" /> }
           />
 
           {/*Rutas privadas Administrador*/}

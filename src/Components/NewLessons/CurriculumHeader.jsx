@@ -25,14 +25,13 @@ const CurriculumHeader = ({ onAddSection ,handlePublishedCourse}) => {
             <FaEye />
             Vista Previa
           </button>
-          <Link
+          <button
             onClick={()=>handlePublishedCourse()}
-            //to="/cursos/publicar"
             className="flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-900 text-white text-sm font-bold hover:bg-blue-800 transition-colors"
           >
             <FaUpload />
             Publicar curso
-          </Link>
+          </button>
         </div>
       </div>
 

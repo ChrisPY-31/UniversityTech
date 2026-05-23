@@ -1,29 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaTimes, FaCloudUploadAlt, FaClock, FaInfoCircle } from 'react-icons/fa'
 
-const AddLessonModal = ({ isOpen, onClose, onSave }) => {
+const AddLessonModal = ({ isOpen, onClose, onSave, initialValues }) => {
   const [title, setTitle] = useState('')
   const [video, setVideo] = useState(null)
+  const [videoName, setVideoName] = useState('')
   const [duration, setDuration] = useState('')
   const [description, setDescription] = useState('')
+  const [saving, setSaving] = useState(false)
+
+  useEffect(() => {
+    if (isOpen) {
+      setTitle(initialValues?.title || '')
+      setDescription(initialValues?.description || '')
+      setDuration(initialValues?.duration || '')
+      setVideo(null)
+      setVideoName('')
+    }
+  }, [isOpen])
 
   if (!isOpen) return null
+
+  const isEditing = !!initialValues
 
   const handleVideoChange = (e) => {
     const file = e.target.files[0]
     if (file) {
-      setVideo(file.name)
+      setVideo(file)
+      setVideoName(file.name)
     }
   }
 
-  const handleSave = () => {
-    if (title.trim()) {
-      onSave({ title, video, duration, description })
-      setTitle('')
-      setVideo(null)
-      setDescription('')
-      setDuration('')
+  const handleSave = async () => {
+    if (!title.trim()) return
+    setSaving(true)
+    try {
+      await onSave({ title, video, duration, description })
       onClose()
+    } catch {
+      // error shown by hook
+    } finally {
+      setSaving(false)
     }
   }
 
@@ -34,9 +51,11 @@ const AddLessonModal = ({ isOpen, onClose, onSave }) => {
       <div className="relative bg-white rounded-2xl w-full max-w-xl shadow-xl overflow-hidden animate-[fadeIn_0.3s_ease-out]">
         <div className="px-8 py-6">
           <span className="text-xs font-bold text-teal-600 bg-teal-100 px-3 py-1 rounded-full uppercase tracking-wider">
-            Nueva Lección
+            {isEditing ? 'Editar Lección' : 'Nueva Lección'}
           </span>
-          <h2 className="text-2xl font-bold text-gray-900 mt-3">Añadir Nuevo Video</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mt-3">
+            {isEditing ? 'Editar Video' : 'Añadir Nuevo Video'}
+          </h2>
           <p className="text-sm text-gray-500 mt-1">
             Configura los detalles de tu contenido educativo de alto nivel.
           </p>
@@ -77,15 +96,17 @@ const AddLessonModal = ({ isOpen, onClose, onSave }) => {
           <div className="flex gap-4">
             <div className="flex-1">
               <label className="block text-sm font-bold text-blue-900 mb-2">
-                Video de la lección
+                {isEditing ? 'Reemplazar video (opcional)' : 'Video de la lección'}
               </label>
               <label className="block border-2 border-dashed border-gray-300 rounded-xl p-6 text-center cursor-pointer hover:border-blue-400 transition-colors">
-                {video ? (
-                  <p className="text-sm text-green-600 font-medium">{video}</p>
+                {videoName ? (
+                  <p className="text-sm text-green-600 font-medium">{videoName}</p>
                 ) : (
                   <div>
                     <FaCloudUploadAlt className="text-3xl text-teal-400 mx-auto mb-2" />
-                    <p className="text-sm font-medium text-gray-700">Arrastra tu video aquí</p>
+                    <p className="text-sm font-medium text-gray-700">
+                      {isEditing ? 'Subir nuevo archivo' : 'Arrastra tu video aquí'}
+                    </p>
                     <p className="text-xs text-gray-400 mt-1">MP4, MOV o WebM (Máx. 2GB)</p>
                   </div>
                 )}
@@ -123,7 +144,6 @@ const AddLessonModal = ({ isOpen, onClose, onSave }) => {
               </div>
             </div>
           </div>
-
         </div>
 
         <div className="px-8 py-5 flex items-center justify-center gap-4 border-t border-gray-100">
@@ -135,9 +155,10 @@ const AddLessonModal = ({ isOpen, onClose, onSave }) => {
           </button>
           <button
             onClick={handleSave}
-            className="px-8 py-3 rounded-lg bg-blue-900 text-white text-sm font-bold hover:bg-blue-800 transition-colors"
+            disabled={saving}
+            className="px-8 py-3 rounded-lg bg-blue-900 text-white text-sm font-bold hover:bg-blue-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            Crear Lección →
+            {saving ? 'Guardando...' : isEditing ? 'Actualizar Video →' : 'Crear Lección →'}
           </button>
         </div>
       </div>
